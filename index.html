@@ -917,6 +917,154 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
     </div>
     
+
+
+<!-- فۆڕمی لێدوانی قوتابیان لەسەر ئەنجامی تاقیکردنەوە -->
+<div class="feedback-container">
+    <h2><i class="fas fa-comment-dots"></i>فۆرمی داواكاری ووردبینی</h2>
+    <form id="feedbackForm">
+        <div class="input-group">
+            <label for="name"><i class="fas fa-user"></i>ناوی سیانی</label>
+            <input type="text" id="name" name="name" placeholder="ئاریان علی محمد" required>
+        </div>
+
+        <div class="input-group">
+            <label for="class"><i class="fas fa-graduation-cap"></i> پۆل</label>
+            <input type="text" id="class" name="class" placeholder=" دەیەمی زانستی " required>
+        </div>
+
+        <div class="input-group">
+            <label for="branch"><i class="fas fa-code-branch"></i>لق</label>
+            <input type="text" id="branch" name="branch" placeholder="أ" required>
+        </div>
+
+        <div class="input-group">
+            <label for="opinion"><i class="fas fa-edit"></i>داواكاری</label>
+            <textarea id="opinion" name="opinion" rows="4" placeholder="گرووپی پرسیارەكەم دیاری نەكردووە" required></textarea>
+        </div>
+
+        <button type="submit"><i class="fas fa-paper-plane"></i> ناردن </button>
+        <p id="responseMessage"></p>
+    </form>
+</div>
+
+<!-- شیوەسازی فۆڕمەکە -->
+<style>
+.feedback-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.feedback-container h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #3498db;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+.input-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.input-group i {
+    margin-left: 5px;
+    color: #3498db;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border 0.3s ease-in-out;
+    text-align: right;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    color: white;
+    background: #3498db;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #2980b9;
+}
+
+#responseMessage {
+    margin-top: 15px;
+    font-weight: bold;
+    color: green;
+}
+</style>
+
+<!-- جاڤاسکریپت بۆ ناردنی زانیاری بۆ گووگڵ شیت و ئیمەیڵ -->
+<script>
+document.getElementById("feedbackForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    const formData = {
+        name: document.getElementById("name").value,
+        class: document.getElementById("class").value,
+        branch: document.getElementById("branch").value,
+        opinion: document.getElementById("opinion").value
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycbzjRP1yrKDYu7-ge7IALzAOS_7pZuwMg2-TVCbPNyyvVxmYLTR_NIS1adTHJ8cy22E6/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+    })
+    .then(() => {
+        document.getElementById("responseMessage").innerText = "سەرکەوتووانە نێردرا! .";
+        document.getElementById("feedbackForm").reset();
+    })
+    .catch(error => console.error("هەڵە ڕویدا:", error));
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- Visitor Counter -->
     <div class="visitor-counter">
         <i class="fas fa-eye"></i>
